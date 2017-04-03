@@ -1,0 +1,26 @@
+0.  pneumonoultramicroscopicsilicovolcanoconiosis is an artificial long word said to mean a lung disease
+    caused by inhaling very fine ash and sand dust. (Defined by wikipedia.org).
+1.  getrusage() returns resource usage measures for who, which can be rusage_self, rusage_child or rusage_thread.
+    Our program speller.c uses rusage_self.
+2.  Total 16 items are described in man page. Not all fields are completed; unmaintained fields are set to zero by
+       the kernel.
+3.  Passing a struct by value will cause whole struct to be copied while by passing a struct by reference will
+    save memory.
+4.  Before the "for loop" starts variable "int index=0" is declared to keep track of words length, "int misspelling = 0"
+    and "int words = 0" are created to keep track and count misspelling and words respectively. In for loop
+    char "c" is declared to get each alphabet from "fp" using function "fgetc" untill "EOF" occures. First if condition checks
+    if c is alphabet or "\" and index is ">" 0, then it adds the char to the array "word" at position "index", and
+    if "length" of word become greater than 45 as described in "dictionary.h" then it terminates and make index=0.
+    In 2nd if condition cheks if "c" is numaric then terminate this word and set index back to "0" again.
+    In the last Else if case if index is ">" 0 then we add "\0" at the last of the string word to complete it and increase
+    word count as it is a complete word. Then we use resourse usage function for self and store it at the address
+    of before. Then we run bool misspelling function and after that again use "getrusage" function for self 
+    and store it to the address of after. Then update time_check. If it is misspelled then print the word 
+    and increment the count "misspelled". At the last set index to 0 to be prepared for the new word.
+5.  As per this program we have to filter alphanumaric characters which is not easily possible in fscanf() as
+    it take whole stream as input not character by character.
+6.  You used const char* because you don't want there values to be changed during the execution of these functions.
+7.  TODO
+8.  TODO
+9.  TODO
+10. TODO

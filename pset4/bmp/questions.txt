@@ -1,0 +1,72 @@
+1.  How many different colors does each format support?
+        GIF format uses 8 bits or 256 colors.
+        JPEG format uses 24 bits which means it uses 16.7 million colors.
+         PNG format uses 8 bits but also extends to 24 bits which means it uses 16 million colors.
+         BMP format uses 8 to 32 bit color, which mean over 4 billion colors.
+      
+2.  Which of the formats supports animation?
+              Only GIF support animation.
+3.  What’s the difference between lossy and lossless compression?
+        Lossless and lossy compression are terms that describe whether or not,
+        in the compression of a file, all original data can be recovered when the file is uncompressed.
+        With lossless compression, every single bit of data that was originally in the file remains after
+        the file is uncompressed.All of the information is completely restored.
+        On the other hand, lossy compression reduces a file by permanently eliminating certain information,
+        especially redundant information. When the file is uncompressed, only a part of the original information
+        is still there (although the user may not notice it). Lossy compression is generally used for
+        video and sound, where a certain amount of information loss will not be detected by most users.
+        The JPEG image file, commonly used for photographs and other complex still images on the Web, is an
+        image that has lossy compression. 
+4.  What happens, technically speaking, when a file is deleted on a FAT file system?
+        When we delete a file using Win OS it takes two steps
+                1: the system modifies the file's first character in the files directory entry to indicate that
+                the file has been deleted and the directory entry can be recycled.
+                2: The system moves this cluster to hard drive's list of free clusters.
+                The actual file data is never touched.
+5.  What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+        First of all we should rewrite all segments of hard disk with junk data. There must be a truly vast random
+        pattern so that data should not be recovered.
+        Second we could use commercially available software to properly sensitize the disk, We can degause the 
+        disk also, but it will damage the disk permanently.
+6.  What’s stdint.h?
+        As name suggest stdint.h is a header file which has many typedef of wider integer types eg. 8 Bits, 16 Bits up to 64
+        Bits. It also defines same length integers for both signed and unsigned integers.
+7.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+        These specific data types are used when we need precisely that much Bits for our program either signed or unsigned.
+        Like uint8_t gives 8 bits unsigned integer type, We use these because of our hardware/operating system
+        or processor requirement.
+8.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+        A BYTE is 8 bits or 1 byte long, a DWORD is 32 bits or 4 bytes long, a LONG is also 32 bits or 4 bytes long,
+        and a WORD is 16 bits or 2 bytes long.
+9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? (Leading bytes used to identify file
+        formats (with high probability) are generally called "magic numbers.)"
+        This is a header file used to identify the BMP or DIB file, it contains information about type,size and layout
+        of a DIB bitmap file it is defined as a struct. For BMP it must be(0x4d42)
+10.  What’s the difference between bfSize and biSize
+        bfSize denotes size of BMP file while biSize denotes size of struct. Both are of same length.
+11. What does it mean if biHeight is negative?
+        For uncompressed BMP if biHeight is negative means image is top down DIB with it's origin at left.
+        For compressed formats, biHeight must be positive, regardless of image orientation.
+12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+        The biBitcount determines the number of bits that each pixel use and maximum number of colors used by BMP.
+13. Why might fopen return NULL in copy.c:37?
+        fopen might return NULL in copy.c:37 if there is no more memory available in heap.
+14. Why is the third argument to fread always 1 in our code?
+        Third argument determines how many times we have to read, if it is 10 program will read it 10 times, In our
+        case we use third argument 1 as we have to read it only 1 time.
+15. What value does copy.c:70 assign padding if bi.biWidth is 3?
+        We need to use padding of 3 bits so that it can be multiple of 4. as bi.biwidth*number of pixels per bit
+        3*3=9+4=12
+16. What does fseek do?
+        Use fseek when you want to change the offset of the file pointer fp. This is an extremely useful tool. Normally,
+        when reading in from a file, the pointer continues in one direction, from the start of the file to the end. fseek,
+        however, allows you to change the location of the file pointer.
+
+        offset refers to how many bytes you want to change the current position of the file pointer fp. You can go both forward
+        with positive numbers, or backward with negative numbers.
+
+        If you want to change the location of the pointer fp from its current location, set from_where to SEEK_CUR. To instead set the file pointer fp to a location in relation to the end of the file, set from_where to SEEK_END. Similarly, if you want to alter the pointer in relation to the beginning of the file, set from_where to SEEK_SET.
+17. What is SEEK_CUR?
+        If you want to change position of a pointer from it's current position set from_where to SEEK_CUR.
+18. Whodunit?
+        He is  rick astley the song writer.
