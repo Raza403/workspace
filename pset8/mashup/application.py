@@ -48,8 +48,11 @@ def search():
         raise RuntimeError ("Use get request method")
     else:
         q = request.args.get("q") + "%"
-        place = db.execute("SELECT * FROM places WHERE place_name LIKE :q", q=q)
-    return jsonify(place)
+        place = db.execute("SELECT * FROM places WHERE postal_code LIKE :q OR place_name LIKE :q OR admin_name1 LIKE :q", q=q)
+        if len(place) > 8:
+            return jsonify([place[0],place[1],place[2],place[3],place[4],place[5],place[6],place[7]])
+        else:
+            return jsonify(place)
 
 @app.route("/update")
 def update():

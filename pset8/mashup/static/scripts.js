@@ -37,7 +37,7 @@ $(function() {
     // options for map
     // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     var options = {
-        center: {lat: 37.4236, lng: -122.1619}, // Stanford, California
+        center: {lat: 42.3770, lng: -71.1256}, // Stanford, California
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 14,
@@ -63,7 +63,14 @@ $(function() {
  */
 function addMarker(place)
 {
-    // TODO
+    var myLatLng = new google.maps.Map(place["latitude"],place["longitude"]);
+    var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: place["place_name"] + "," + place["admin_name1"] + "," + place["postal_code"]
+  });
+
+    markers.push (marker);
 }
 
 /**
@@ -99,7 +106,7 @@ function configure()
         templates: {
             suggestion: Handlebars.compile(
                 "<div>" +
-                "TODO" +
+                "{{place_name}}, {{admin_name1}}, {{postal_code}}" +
                 "</div>"
             )
         }
