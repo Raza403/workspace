@@ -171,7 +171,14 @@ function configure()
  */
 function removeMarkers()
 {
-    // TODO
+    //slightly modified the function taken from https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+    var length = markers.length;
+    for (i=0;i<length;i++){
+       // Removes the markers from the map, but keeps them in the array.
+        markers[i].setMap(null);
+    }
+    // Deletes all markers in the array by removing references to them.
+        markers = [];
 }
 
 /**
