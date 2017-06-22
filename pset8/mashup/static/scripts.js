@@ -37,7 +37,7 @@ $(function() {
     // options for map
     // https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     var options = {
-        center: {lat: 42.3770, lng: -71.1256}, // Stanford, California
+        center: {lat: 37.4236, lng: -122.1619}, // Stanford, California
         disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         maxZoom: 14,
@@ -63,16 +63,40 @@ $(function() {
  */
 function addMarker(place)
 {
-    var myLatLng = new google.maps.Map(place["latitude"],place["longitude"]);
+    //Adding markers, on lat long given by place.
+    var myLatLng = {lat: (place["latitude"]),lng: (place["longitude"])};
+    //Configuring marker,by giving Lat Lng,title and label
     var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: place["place_name"] + "," + place["admin_name1"] + "," + place["postal_code"]
-  });
-
-    markers.push (marker);
+       position: myLatLng,
+       map: map,
+       title: place["place_name"] + ", " + place["admin_name1"] + ", " + place["postal_code"],
+       label: place["place_name"] + ", " + place["admin_name1"]
+    });
+    //Adding info window to the markers
+    geo = {geo: place.postal_code};
+    //Getting Json Object from url and parsing it for articles it contains
+    $.getJSON(Flask.url_for("articles"),geo,function(article){
+        var content;
+        //If article is not empty
+       if (article.length > 0){
+           content = "<ul>";
+           //Start populating article
+           for (i=0;i<article.length;i++){
+            content += '<li><a href="' + article[i].link + '">' + article[i].title + '</a></li>';
+           }
+           content += "</ul>";
+       } 
+       //If no article
+       else {
+           content = "No Content";
+       }
+       //Calling show info when clicks giving info about marker and content.
+       google.maps.event.addListener(marker,'click',function(){
+          showInfo(marker, content); 
+       });
+    });
+    markers.push(marker);    
 }
-
 /**
  * Configures application.
  */
@@ -235,4 +259,4 @@ function update()
         // log error to browser's console
         console.log(errorThrown.toString());
     });
-};
+}

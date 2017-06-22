@@ -38,7 +38,10 @@ def articles():
     else:
         """Look up geo given and then save it to variable article"""
         article = lookup(request.args.get("geo"))
-    return jsonify([article])
+        if len(article) > 5:
+            return jsonify([article[0],article[1],article[2],article[3],article[4]])
+        else:
+            return jsonify([article])
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
