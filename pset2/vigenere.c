@@ -23,7 +23,7 @@ int main (int argc,string argv[])
         
     }
 
-        string p = GetString();//Prompting user for plain text.
+        string p = get_string();//Prompting user for plain text.
         int plen=strlen (p);//lenth of plain text||number of chars in the plain text.
         int klen=strlen (argv[1]);//lenth of key
         char key[klen];// string used as for key
